@@ -47,8 +47,11 @@
   }
 
   const cart = new Cart()
-
-  for (index in shoppingCartData) {
+  for (let index in shoppingCartData) {
+    // assign to variable here to have access to all object properties
+    let item = shoppingCartData[index]
+    // this.name = item.name
+    console.log(item)
     cart.addItem(shoppingCartData[index])
   }
 
