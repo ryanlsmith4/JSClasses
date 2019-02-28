@@ -51,9 +51,19 @@
     // assign to variable here to have access to all object properties
     let item = shoppingCartData[index]
     // this.name = item.name
-    console.log(item)
-    cart.addItem(shoppingCartData[index])
+    // console.log(item)
+    cart.addItem(item)
   }
+// 2D array practice
+  let arr = []
+  for (let i = 0; i < 10; i += 1){
+    let secarr = []
+    for (let j = 0; j < 10; j += 1) {
+      secarr.push(0)
+    }
+    arr.push(secarr)
+  }
+  console.log(arr);
 
 
   console.log(cart.items)
