@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <script type="text/javascript" src="shoppingCartData.js"></script>
+
+<script>
+
+  // console.log(shoppingCartData)
+
+  class Item {
+    constructor (item) {
+      this.name = item.name;
+      this.price = item.price;
+      this.quantity = item.qty;
+    }
+    subtotal() {
+      return this.price * this.quantity;
+    }
+  }
+
+  class Cart {
+    constructor () {
+      this.items = []
+    }
+    addItem(item) {
+      const newItem = new Item(item)
+      for (let i = 0; i < this.items.length; i += 1) {
+        if (item.name == this.items[i].name) {
+          this.items[i].quantity += item.qty
+          return
+        }
+      }
+      this.items.push(newItem)
+    }
+    total() {
+      let cost = 0;
+      for (let i = 0; i < this.items.length; i += 1) {
+        cost += this.items[i].subtotal()
+      }
+      return cost
+    }
+  }
+
+  const cart = new Cart()
+
+  for (index in shoppingCartData) {
+    cart.addItem(shoppingCartData[index])
+  }
+
+
+  console.log(cart.items)
+  console.log(cart.total());
+</script>
+
+  </body>
+</html>

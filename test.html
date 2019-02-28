@@ -1,0 +1,56 @@
+<script>
+  const log = console.log
+  const words = "This Sentence is Dope Lets Make it random"
+  const word = "jumbled"
+
+  const ranNum = (n) => {
+    const random = Math.floor(Math.random() * n) // integer
+    return random;
+  }
+  // log(ranNum(10))
+
+  const ranChars = (string) => {
+    scramArray = [];
+    const lettersArray = string.split('');
+    for (let i = 0; i < string.length; i += 1) {
+      let ranIndex = ranNum(lettersArray.length);
+
+      scramArray.push((lettersArray[ranIndex]));
+      lettersArray.splice(ranIndex, 1);
+    }
+    return scramArray.join('');
+  }
+  // log(ranChars(word))
+
+  const frontAndLast = (string) => {
+    const word = string.split('');
+    const f = word.shift();
+    const l = word.pop();
+      // use ranChars to scramble inner chars
+    const ranMid = ranChars(word.join(''));
+    const newArray = ranMid.split('');
+      // join random letters to front and last
+    newArray.unshift(f);
+    newArray.push(l);
+      // return word
+    return newArray.join('');
+  }
+
+  // log(frontAndLast(word))
+  const scrambledSentence = (words, randomFunc) => {
+    let wordArray = words.split(' ');
+    const scramArray = [];
+    for (let i  in wordArray) {
+      const scrambleAWord = randomFunc(wordArray[i]);
+      scramArray.push(scrambleAWord);
+    }
+    const newSent = scramArray.join(' ');
+    return newSent;
+  }
+
+  log(scrambledSentence(words, frontAndLast));
+
+
+
+
+</script>
