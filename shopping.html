@@ -1,74 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
 
-    <script type="text/javascript" src="shoppingCartData.js"></script>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
 
-<script>
+<body>
 
-  // console.log(shoppingCartData)
+  <script type="text/javascript" src="shoppingCartData.js"></script>
 
-  class Item {
-    constructor (item) {
-      this.name = item.name;
-      this.price = item.price;
-      this.quantity = item.qty;
+  <script>
+    // console.log(shoppingCartData)
+
+    class Item {
+      constructor(item) {
+        this.name = item.name;
+        this.price = item.price;
+        this.quantity = item.qty;
+      }
+      subtotal() {
+        return this.price * this.quantity;
+      }
     }
-    subtotal() {
-      return this.price * this.quantity;
-    }
-  }
 
-  class Cart {
-    constructor () {
-      this.items = []
-    }
-    addItem(item) {
-      const newItem = new Item(item)
-      for (let i = 0; i < this.items.length; i += 1) {
-        if (item.name == this.items[i].name) {
-          this.items[i].quantity += item.qty
-          return
+    class Cart {
+      constructor() {
+        this.items = []
+      }
+      addItem(item) {
+        const newItem = new Item(item)
+        for (let i = 0; i < this.items.length; i += 1) {
+          if (item.name == this.items[i].name) {
+            this.items[i].quantity += item.qty
+            return
+          }
         }
+        this.items.push(newItem)
       }
-      this.items.push(newItem)
-    }
-    total() {
-      let cost = 0;
-      for (let i = 0; i < this.items.length; i += 1) {
-        cost += this.items[i].subtotal()
+      total() {
+        let cost = 0;
+        for (let i = 0; i < this.items.length; i += 1) {
+          cost += this.items[i].subtotal()
+        }
+        return cost
       }
-      return cost
     }
-  }
 
-  const cart = new Cart()
-  for (let index in shoppingCartData) {
-    // assign to variable here to have access to all object properties
-    let item = shoppingCartData[index]
-    // this.name = item.name
-    // console.log(item)
-    cart.addItem(item)
-  }
-// 2D array practice
-  let arr = []
-  for (let i = 0; i < 10; i += 1){
-    let secarr = []
-    for (let j = 0; j < 10; j += 1) {
-      secarr.push(0)
+    const cart = new Cart()
+    for (let index in shoppingCartData) {
+      // assign to variable here to have access to all object properties
+      let item = shoppingCartData[index]
+      // this.name = item.name
+      // console.log(item)
+      cart.addItem(item)
     }
-    arr.push(secarr)
-  }
-  console.log(arr);
+    // 2D array practice
+    let arr = []
+    for (let i = 0; i < 10; i += 1) {
+      let secarr = []
+      for (let j = 0; j < 10; j += 1) {
+        secarr.push(0)
+      }
+      arr.push(secarr)
+    }
+
+    const item = {
+      found: false,
+      name: "Ryan"
+    }
+
+    const item1 = {
+      found: false,
+      name: "Marley"
+    }
+
+    const item2 = {
+      found: false,
+      name: "Ted"
+    }
 
 
-  console.log(cart.items)
-  console.log(cart.total());
-</script>
+    const array = [item, item1, item2]
 
-  </body>
+
+    const find = {
+      found: false,
+      name: 'Ryan'
+    }
+
+
+    const update = (item, array) => {
+      for (index in array) {
+        const updatedItem = array[index]
+        if (item.name === updatedItem.name) {
+          array.splice(updatedItem, 1)
+          updatedItem.found = true
+        }
+        array.push(updatedItem)
+        console.log(array);
+        return
+      }
+    }
+
+    console.log(update(find, array));
+
+
+    // console.log(arr);
+    //
+    //
+    // console.log(cart.items)
+    // console.log(cart.total());
+  </script>
+
+</body>
+
 </html>
